@@ -24,10 +24,6 @@ public:
 
 	void dijkstra(int start);
 
-	//Helper functions
-	int getMinNode(const vector<int>& dist, const vector<bool>& visited);
-
-
 private:
 	vector<vector<int>> adjacencyMatrix= {
 		{0,599,1007,1267,1015,1331,-1,-1,-1,-1,-1,-1},
