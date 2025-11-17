@@ -1,0 +1,12 @@
+Distance from Denver to Denver = 0
+Distance from Denver to Kansas City = 599
+Distance from Denver to Chicago = 1007
+Distance from Denver to San Francisco = 1267
+Distance from Denver to Los Angeles = 1015
+Distance from Denver to Seattle = 1331
+Distance from Denver to Houston = 1334
+Distance from Denver to Dallas = 1095
+Distance from Denver to Atlanta = 1463
+Distance from Denver to Miami = 2124
+Distance from Denver to New York = 1221
+Distance from Denver to Boston = 1435
