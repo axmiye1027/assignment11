@@ -1,5 +1,5 @@
 /*************************************************************************
- * AUTHORS	: Eric, Amy, Mason
+ * AUTHORS	: Eric, Amy, Aspen
  * CLASS	: CS 1D
  * DUE DATE	: 11/19/25
  * ASSIGN	: 11
