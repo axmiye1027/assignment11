@@ -107,22 +107,30 @@ void Graph::dijkstra(int start)
  * using Prim-Jarnik's code
  *      start   - starting vertex
  **************************************************************************/
-void Graph::mst(int start) {
+void Graph::mst(int start) 
+{
     /***********************************************************************
      * INITIALIZE
      **********************************************************************/
     const int SIZE = adjacencyMatrix.size();        // number of cities
 
-    vector<bool> visited;                           // vertex visited
+    vector<bool> visited(SIZE, false);              // vertex visited
     vector<int> orderVisit;                         // list of cities visited
-    priority_queue<pair<int, int>> unlocked;        // list of cities we can look at (weight, city)
+    vector<int> parent(SIZE, -1);
+    vector<int> key(SIZE, INT_MAX);
+
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> unlocked;        // list of cities we can look at (weight, city)
 
     /***********************************************************************
      * Initalizing unlocked list
      **********************************************************************/
-    unlocked.push({-1, start});
+
+    key[start] = 0;
+    unlocked.push({0, start});
     
-    while (!unlocked.empty()) {
+    while (!unlocked.empty()) 
+    {
 
         /*******************************************************************
          * 1. Get the smallest distance city
@@ -135,24 +143,35 @@ void Graph::mst(int start) {
         /*******************************************************************
          * 2. Check if smallest distance city is NOT visited
          ******************************************************************/
-        if (visited[city] == false) {
+        // if (visited[city] == false) {
          
-            // Mark as visited
-            visited[city] = true;
-            // Add to list of visited cities
-            orderVisit.push_back(city);
+        //     // Mark as visited
+        //     visited[city] = true;
+        //     // Add to list of visited cities
+        //     orderVisit.push_back(city);
 
-        } // END if (visited[city] == false)
+        // } // END if (visited[city] == false)
+
+        if (visited[city])
+            continue;
+        
+        visited[city] = true;
 
         /*******************************************************************
          * Add adjacent cities to list of unlocked cities
          ******************************************************************/
-        for (int i = 0; i < adjacencyMatrix[city].size(); i++) {
+        for (int i = 0; i < adjacencyMatrix[city].size(); i++) 
+        {
+            int weight = adjacencyMatrix[city][i];
 
             /***************************************************************
              * Check if city NOT visited
              **************************************************************/
-            if (visited[i] == false) {
+            if (weight > 0 && !visited[i] && weight < key[i]) 
+            {
+                key[i]    = weight;
+                parent[i] = city;
+
                 // add to list of cities we can visit
                 unlocked.push({adjacencyMatrix[city][i], i});
             } // END if (visited[i] == false)
@@ -160,5 +179,24 @@ void Graph::mst(int start) {
         } // END for (int i = 0; i < SIZE; i++)
 
     } // END while (!unlocked.empty())
+
+    /***********************************************************************
+     * PRINT MST EDGES
+     **********************************************************************/
+
+     cout << "MST Edges:\n";
+     int totalWeight = 0;
+
+     for (int i = 0; i < SIZE; ++i)
+     {
+        if (parent[i] != -1)
+        {
+            cout << left;
+            cout << setw(13) << indexToCity[parent[i]] << " -> " << setw(13) << indexToCity[i] << " weight: " << key[i] << endl;
+            totalWeight += key[i];
+        }
+     }
+
+     cout << "Total Weight: " << totalWeight;
 
 } // END mst

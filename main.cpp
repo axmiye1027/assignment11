@@ -11,7 +11,10 @@ int main()
 {
 	Graph g1;
 
-	//g1.dijkstra(0);
+	cout << "DIJKSTRA:\n";
+	g1.dijkstra(0);
+
+	cout << endl << endl;
 
 	g1.mst(0);
 
